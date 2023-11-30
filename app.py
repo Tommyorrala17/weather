@@ -1,6 +1,16 @@
 from flask import Flask, render_template
 import requests 
 from dotenv import load_dotenv, dotenv_values
+from sqlalchemy import create_engine, Integer, MetaData, Table, Column, String
+
+
+metaData= MetaData()
+
+cities =  Table ( 'Cities', metaData,
+                 Column('id',Integer(), primary_key=True, autoincrement=True),
+                 Column ('nombre',String(100), nullable=True, unique=True) 
+                )
+
 app = Flask (__name__)
 
 config = dotenv_values('.env')
